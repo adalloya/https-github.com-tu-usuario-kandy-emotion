@@ -1,12 +1,26 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kandy Emotion | Pasteles de Diseño y Repostería Gourmet</title>
+    <title>Kandy Emotion | Pasteles de Diseño Exclusivo</title>
     <meta name="description"
         content="Diseñamos el pastel que imaginaste. Ingredientes premium, diseño exclusivo y sabor artesanal. Kandy Emotion - Digital Atelier.">
+
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/png" href="assets/images/logo-icon.png">
+    <link rel="apple-touch-icon" href="assets/images/logo-icon.png">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kandyemotion.com/">
+    <meta property="og:title" content="Kandy Emotion | Pasteles de Diseño Exclusivo">
+    <meta property="og:description"
+        content="Diseñamos el pastel que imaginaste. Ingredientes premium, diseño exclusivo y sabor artesanal.">
+    <meta property="og:image" content="assets/images/logo-icon.png">
+
     <meta name="keywords"
         content="Pasteles personalizados, Repostería gourmet, Pasteles de boda, Kandy Emotion, Villas Cocoyoc">
 
@@ -36,7 +50,11 @@
                     <li><a href="#value-prop">Filosofía</a></li>
                     <li><a href="#gallery">Galería</a></li>
                     <li><a href="#menu">Menú</a></li>
-                    <li><a href="#configurator" class="btn btn-primary btn-sm">Cotizar Ahora</a></li>
+                    <li>
+                        <div class="hero-buttons">
+                            <a href="#configurator" class="btn btn-primary">Cotizar mi Evento</a>
+                        </div>
+                    </li>
                 </ul>
             </nav>
 
@@ -156,60 +174,92 @@
 
                 <!-- Masonry Grid -->
                 <div class="gallery-grid">
-                    <div class="gallery-item wedding">
+                    <!-- Wedding -->
+                    <div class="gallery-item wedding" onclick="openLightbox(this)">
                         <img src="assets/images/gallery-wedding.png" alt="Pastel de Boda Elegante" loading="lazy">
-                        <div class="gallery-overlay">
-                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
-                        </div>
+                        <div class="gallery-overlay"></div>
                     </div>
-                    <div class="gallery-item kids">
+                    <div class="gallery-item wedding" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-wedding-2.png" alt="Detalle Boda Encaje" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-item wedding" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-wedding-3.png" alt="Pastel Boda Jardín" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+
+                    <!-- Kids -->
+                    <div class="gallery-item kids" onclick="openLightbox(this)">
                         <img src="assets/images/gallery-kids.png" alt="Pastel Infantil Divertido" loading="lazy">
-                        <div class="gallery-overlay">
-                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
-                        </div>
+                        <div class="gallery-overlay"></div>
                     </div>
-                    <div class="gallery-item babyshower">
+                    <div class="gallery-item kids" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-kids-2.png" alt="Pastel Superhéroes" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-item kids" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-kids-3.png" alt="Pastel Sirena" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+
+                    <!-- Baby Shower -->
+                    <div class="gallery-item babyshower" onclick="openLightbox(this)">
                         <img src="assets/images/gallery-babyshower.png" alt="Pastel Baby Shower" loading="lazy">
-                        <div class="gallery-overlay">
-                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
-                        </div>
+                        <div class="gallery-overlay"></div>
                     </div>
-                    <div class="gallery-item xv">
+                    <div class="gallery-item babyshower" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-babyshower-2.png" alt="Gender Reveal" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-item babyshower" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-babyshower-3.png" alt="Pastel Elefante" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+
+                    <!-- XV Años -->
+                    <div class="gallery-item xv" onclick="openLightbox(this)">
                         <img src="assets/images/gallery-quince.png" alt="Pastel XV Años" loading="lazy">
-                        <div class="gallery-overlay">
-                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
-                        </div>
+                        <div class="gallery-overlay"></div>
                     </div>
-                    <div class="gallery-item graduation">
+                    <div class="gallery-item xv" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-quince-2.png" alt="Pastel XV Neón" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-item xv" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-quince-3.png" alt="Pastel XV Real" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+
+                    <!-- Graduation -->
+                    <div class="gallery-item graduation" onclick="openLightbox(this)">
                         <img src="assets/images/gallery-graduation.png" alt="Pastel Graduación" loading="lazy">
-                        <div class="gallery-overlay">
-                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
-                        </div>
+                        <div class="gallery-overlay"></div>
                     </div>
-                    <div class="gallery-item birthday">
+                    <div class="gallery-item graduation" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-graduation-2.png" alt="Pastel Graduación Doctor" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <div class="gallery-item graduation" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-graduation-3.png" alt="Pastel Graduación Elegante"
+                            loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+
+                    <!-- Birthday -->
+                    <div class="gallery-item birthday" onclick="openLightbox(this)">
                         <img src="assets/images/gallery-birthday.png" alt="Pastel Cumpleaños" loading="lazy">
-                        <div class="gallery-overlay">
-                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
-                        </div>
+                        <div class="gallery-overlay"></div>
                     </div>
-                    <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                    <div class="gallery-item birthday" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-birthday-2.png" alt="Pastel Monograma" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
+                    <!-- Reusing birthday 1 for 3rd slot as generation failed -->
+                    <div class="gallery-item birthday" onclick="openLightbox(this)">
+                        <img src="assets/images/gallery-birthday.png" alt="Pastel Cumpleaños Detalle" loading="lazy">
+                        <div class="gallery-overlay"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="gallery-item kids">
-                <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=800&auto=format&fit=crop"
-                    alt="Pastel Infantil Colorido" loading="lazy">
-                <div class="gallery-overlay">
-                    <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
-                </div>
-            </div>
-            <div class="gallery-item editorial">
-                <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?q=80&w=800&auto=format&fit=crop"
-                    alt="Pastel Minimalista" loading="lazy">
-                <div class="gallery-overlay">
-                    <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
-                </div>
-            </div>
-            </div>
             </div>
         </section>
 
@@ -218,7 +268,7 @@
             <div class="container">
                 <h2 class="section-title text-center">Menú Gourmet</h2>
                 <div class="menu-grid">
-                    <div class="menu-item">
+                    <div class="menu-item" onclick="openMenuModal('vainilla')">
                         <img src="assets/images/menu-vanilla.png" alt="Vainilla Bourbon" class="menu-img"
                             loading="lazy">
                         <div class="menu-content">
@@ -226,25 +276,64 @@
                             <p>Bizcocho suave con vainilla de Madagascar y crema de mantequilla sedosa.</p>
                         </div>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item" onclick="openMenuModal('cacao')">
                         <img src="assets/images/menu-cacao.png" alt="Cacao Trufado" class="menu-img" loading="lazy">
                         <div class="menu-content">
                             <h4>Cacao Trufado Belga</h4>
                             <p>Intenso chocolate belga 70% con ganache de trufa oscura.</p>
                         </div>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item" onclick="openMenuModal('citrus')">
                         <img src="assets/images/menu-citrus.png" alt="Citrus Zest" class="menu-img" loading="lazy">
                         <div class="menu-content">
                             <h4>Citrus Zest & Butter</h4>
                             <p>Refrescante limón eureka y naranja confitada con buttercream cítrico.</p>
                         </div>
                     </div>
-                    <div class="menu-item">
+                    <div class="menu-item" onclick="openMenuModal('pink')">
                         <img src="assets/images/menu-pink.png" alt="Pink Velvet" class="menu-img" loading="lazy">
                         <div class="menu-content">
                             <h4>Pink Velvet Natural</h4>
                             <p>Nuestra versión del clásico, teñido con betabel orgánico y cacao.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="section-subtitle text-center"
+                    style="margin-top: 4rem; margin-bottom: 2rem; font-family: 'Pacifico', cursive; color: var(--color-secondary);">
+                    Rellenos Irresistibles</h3>
+
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="openMenuModal('mousse')">
+                        <img src="https://placehold.co/400x400/pink/white?text=Mousse" alt="Mousse de Cheesecake"
+                            class="menu-img" loading="lazy">
+                        <div class="menu-content">
+                            <h4>Mousse de Cheesecake</h4>
+                            <p>Suave, cremoso y con el toque ácido perfecto del queso crema.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openMenuModal('avellana')">
+                        <img src="https://placehold.co/400x400/brown/white?text=Avellana" alt="Ganache de Avellana"
+                            class="menu-img" loading="lazy">
+                        <div class="menu-content">
+                            <h4>Ganache de Avellana</h4>
+                            <p>Chocolate con leche infusionado con avellanas tostadas.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openMenuModal('frutos')">
+                        <img src="https://placehold.co/400x400/red/white?text=Frutos" alt="Compota Frutos Rojos"
+                            class="menu-img" loading="lazy">
+                        <div class="menu-content">
+                            <h4>Compota de Frutos Rojos</h4>
+                            <p>Reducción artesanal de fresas, frambuesas y zarzamoras.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item" onclick="openMenuModal('caramelo')">
+                        <img src="https://placehold.co/400x400/orange/white?text=Caramelo" alt="Caramelo Salado"
+                            class="menu-img" loading="lazy">
+                        <div class="menu-content">
+                            <h4>Caramelo Salado</h4>
+                            <p>Toffee casero con un toque de sal de mar de Colima.</p>
                         </div>
                     </div>
                 </div>
@@ -409,8 +498,9 @@
                     </a>
                 </div>
                 <div class="text-center" style="margin-top: var(--spacing-lg);">
-                    <a href="https://instagram.com/kandyemotion" target="_blank" class="btn btn-outline">Follow
-                        @kandyemotion</a>
+                    <a href="https://instagram.com/kandyemotion" target="_blank" class="btn btn-instagram">
+                        <span>Follow @kandyemotion</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -628,9 +718,27 @@
     <!-- Mobile Bottom Bar -->
     <div class="mobile-bottom-bar">
         <a href="#configurator" class="btn btn-primary btn-block">Cotizar Ahora</a>
-    </div>
+        <!-- Menu Modal -->
+        <div id="menu-modal" class="lightbox">
+            <div class="lightbox-content menu-modal-content">
+                <button class="lightbox-close" onclick="closeMenuModal()">&times;</button>
+                <div class="menu-modal-body text-center">
+                    <h3 id="menu-modal-title" class="section-title"></h3>
+                    <img id="menu-modal-img" src="" alt="Ingrediente" class="menu-modal-image">
+                    <p id="menu-modal-desc" class="lead"></p>
+                    <div class="ingredient-highlight">
+                        <span class="highlight-label">Ingrediente Estrella:</span>
+                        <span id="menu-modal-ingredient" class="highlight-value"></span>
+                    </div>
+                    <p id="menu-modal-phrase" class="quote-phrase"></p>
+                    <a href="#configurator" class="btn btn-primary" onclick="closeMenuModal()">Lo quiero en mi
+                        pastel</a>
+                </div>
+            </div>
+        </div>
 
-    <script src="js/main.js"></script>
+        <!-- Scripts -->
+        <script src="js/main.js"></script>
 </body>
 
 </html>

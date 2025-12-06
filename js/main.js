@@ -1,27 +1,81 @@
 // Main JavaScript for Kandy Emotion
 
 // Global Functions (Accessible by HTML onclick)
-window.openLightbox = (btn) => {
+// Global Functions (Accessible by HTML onclick)
+// Global state for lightbox navigation
+let currentLightboxIndex = 0;
+let galleryImages = [];
+
+window.openLightbox = (element) => {
     const lightbox = document.getElementById('lightbox');
-    if (!lightbox) return; // Guard clause
+    if (!lightbox) return;
 
-    const item = btn.closest('.gallery-item');
-    const img = item.querySelector('img');
-    const imgSrc = img.src;
+    // Collect all gallery images
+    const allItems = document.querySelectorAll('.gallery-grid .gallery-item img');
+    galleryImages = Array.from(allItems).map(img => img.src);
 
-    // Mock thumbnails (using same image + placeholders for demo)
+    // Find index of clicked image
+    const clickedImg = element.querySelector('img');
+    currentLightboxIndex = galleryImages.indexOf(clickedImg.src);
+
+    updateLightboxContent();
+
+    lightbox.classList.add('active');
+
+    const closeBtn = lightbox.querySelector('.lightbox-close');
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Close on background click
+    lightbox.onclick = (e) => {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    };
+
+    // Add swipe listeners
+    const mainContent = lightbox.querySelector('.lightbox-main');
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    mainContent.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    mainContent.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, { passive: true });
+
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) nextLightboxImage();
+        if (touchEndX > touchStartX + 50) prevLightboxImage();
+    }
+};
+
+function updateLightboxContent() {
+    const lightbox = document.getElementById('lightbox');
+    const imgSrc = galleryImages[currentLightboxIndex];
+
+    // Mock thumbnails (using current image + neighbors or placeholders)
+    // For a real app, you might want specific thumbnails for each gallery item
     const thumbnails = [
         imgSrc,
-        'https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=200&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1626803775151-61d756612f97?q=80&w=200&auto=format&fit=crop'
+        galleryImages[(currentLightboxIndex + 1) % galleryImages.length],
+        galleryImages[(currentLightboxIndex + 2) % galleryImages.length]
     ];
 
-    lightbox.innerHTML = `
+    // Update or Create content
+    // Note: Re-rendering the whole content resets listeners, so we should be careful.
+    // Better to just update the image if the structure exists, but for simplicity/robustness with current structure:
+
+    const contentHTML = `
         <div class="lightbox-content">
-            <button class="lightbox-close">&times;</button>
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
             
             <div class="lightbox-main">
                 <img src="${imgSrc}" id="lightbox-main-img" alt="Pastel Detalle">
+                <div class="lightbox-nav-btn prev" onclick="prevLightboxImage()">&#10094;</div>
+                <div class="lightbox-nav-btn next" onclick="nextLightboxImage()">&#10095;</div>
             </div>
             
             <div class="lightbox-sidebar">
@@ -44,31 +98,53 @@ window.openLightbox = (btn) => {
                 
                 <div class="lightbox-cta">
                     <a href="#configurator" class="btn btn-primary btn-block" onclick="closeLightbox()">
-                        Personalizar este Diseño
+                        Quiero uno así
                     </a>
                 </div>
             </div>
         </div>
     `;
-    lightbox.classList.add('active');
 
-    const closeBtn = lightbox.querySelector('.lightbox-close');
-    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.innerHTML = contentHTML;
 
-    // Close on background click
-    lightbox.onclick = (e) => {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    };
+    // Re-attach swipe listeners since we replaced innerHTML
+    const mainContent = lightbox.querySelector('.lightbox-main');
+    let touchStartX = 0;
+
+    mainContent.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    mainContent.addEventListener('touchend', e => {
+        const touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 50) nextLightboxImage();
+        if (touchEndX > touchStartX + 50) prevLightboxImage();
+    }, { passive: true });
+}
+
+window.nextLightboxImage = () => {
+    currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+    updateLightboxContent();
+};
+
+window.prevLightboxImage = () => {
+    currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+    updateLightboxContent();
 };
 
 window.changeLightboxImage = (thumb, src) => {
+    // This is for clicking thumbnails - we can just update the main image
+    // or jump to that index if it's in our gallery list.
+    // For now, let's keep the visual update behavior but maybe find the index if possible.
     const mainImg = document.getElementById('lightbox-main-img');
     if (mainImg) mainImg.src = src;
 
     document.querySelectorAll('.lightbox-thumb').forEach(t => t.classList.remove('active'));
     thumb.classList.add('active');
+
+    // Try to sync index if this src is in our main list
+    const idx = galleryImages.indexOf(src);
+    if (idx !== -1) currentLightboxIndex = idx;
 };
 
 window.closeLightbox = () => {
@@ -144,17 +220,17 @@ window.submitConfigurator = () => {
         return;
     }
 
-    // Email Body
-    const subject = `Nueva Cotización de Pastel - ${name}`;
-    const body = `
-SOLICITUD DE COTIZACIÓN - KANDY EMOTION
+    // WhatsApp Message
+    const phoneNumber = '526562699857';
+    const message = `
+*SOLICITUD DE COTIZACIÓN - KANDY EMOTION*
 ------------------------------------------------
-CLIENTE
-Nombre: ${name}
-Contacto: ${contact}
-Fecha del Evento: ${date}
+*CLIENTE*
+👤 Nombre: ${name}
+📱 Contacto: ${contact}
+📅 Fecha del Evento: ${date}
 ------------------------------------------------
-DETALLES DEL DISEÑO
+*DETALLES DEL DISEÑO*
 ------------------------------------------------
 🎂 Invitados: ${guests} personas
 🍰 Sabor Base: ${flavor}
@@ -162,21 +238,108 @@ DETALLES DEL DISEÑO
 🎨 Estilo Visual: ${style}
 🚚 Método de Entrega: ${delivery}
 ------------------------------------------------
-NOTAS ADICIONALES
+*NOTAS ADICIONALES*
 (El cliente puede agregar notas aquí...)
-
 ------------------------------------------------
-Enviado desde el Configurador Web de Kandy Emotion
+Enviado desde el Configurador Web
     `.trim();
 
-    const mailtoLink = `mailto:adalloya@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailtoLink;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
 
-    alert('¡Listo! Se ha abierto tu correo para enviar la cotización. ¡Gracias por elegirnos!');
+    alert('¡Listo! Se ha abierto WhatsApp para enviar tu cotización. ¡Gracias por elegirnos!');
 
     setTimeout(() => {
         window.location.reload();
     }, 1000);
+};
+
+// Menu Modal Logic
+const menuData = {
+    'vainilla': {
+        title: 'Vainilla Bourbon Imperial',
+        img: 'assets/images/menu-vanilla.png',
+        desc: 'La elegancia hecha sabor. Utilizamos vainas de vainilla de Madagascar maceradas en bourbon añejo.',
+        ingredient: 'Vainilla Planifolia Grado A',
+        phrase: '"Un clásico que nunca pasa de moda, elevado a la perfección."'
+    },
+    'cacao': {
+        title: 'Cacao Trufado Belga',
+        img: 'assets/images/menu-cacao.png',
+        desc: 'Para los verdaderos amantes del chocolate. Una experiencia intensa, húmeda y profundamente aromática.',
+        ingredient: 'Cacao Barry Extra Brute',
+        phrase: '"El chocolate no es un postre, es una emoción."'
+    },
+    'citrus': {
+        title: 'Citrus Zest & Butter',
+        img: 'assets/images/menu-citrus.png',
+        desc: 'Un equilibrio vibrante entre la acidez del limón eureka y la dulzura de nuestra crema de mantequilla.',
+        ingredient: 'Limones Eureka Orgánicos',
+        phrase: '"Un rayo de sol en cada rebanada."'
+    },
+    'pink': {
+        title: 'Pink Velvet Natural',
+        img: 'assets/images/menu-pink.png',
+        desc: 'Suavidad aterciopelada con un toque de cacao y el color vibrante del betabel fresco.',
+        ingredient: 'Betabel Orgánico & Cacao',
+        phrase: '"Romántico, suave y absolutamente irresistible."'
+    },
+    // Fillings
+    'mousse': {
+        title: 'Mousse de Cheesecake',
+        img: 'https://placehold.co/400x400/pink/white?text=Mousse',
+        desc: 'Una nube de sabor. Queso crema de primera calidad batido hasta obtener una textura aireada y ligera.',
+        ingredient: 'Queso Crema Philadelphia',
+        phrase: '"La cremosidad que tus sueños merecen."'
+    },
+    'avellana': {
+        title: 'Ganache de Avellana',
+        img: 'https://placehold.co/400x400/brown/white?text=Avellana',
+        desc: 'Inspirado en los mejores bombones europeos. Chocolate con leche y pasta de avellanas tostadas.',
+        ingredient: 'Avellanas del Piamonte',
+        phrase: '"Un abrazo de sabor en cada bocado."'
+    },
+    'frutos': {
+        title: 'Compota de Frutos Rojos',
+        img: 'https://placehold.co/400x400/red/white?text=Frutos',
+        desc: 'Cocinada a fuego lento para concentrar el sabor de las fresas, frambuesas y zarzamoras frescas.',
+        ingredient: 'Frutos Rojos Frescos',
+        phrase: '"La frescura del bosque en tu pastel."'
+    },
+    'caramelo': {
+        title: 'Caramelo Salado',
+        img: 'https://placehold.co/400x400/orange/white?text=Caramelo',
+        desc: 'El equilibrio perfecto entre dulce y salado. Toffee casero preparado con mantequilla y sal de mar.',
+        ingredient: 'Sal de Mar de Colima',
+        phrase: '"Atrevido, intenso y adictivo."'
+    }
+};
+
+window.openMenuModal = (type) => {
+    const modal = document.getElementById('menu-modal');
+    const data = menuData[type];
+
+    if (!data) return;
+
+    document.getElementById('menu-modal-title').innerText = data.title;
+    document.getElementById('menu-modal-img').src = data.img;
+    document.getElementById('menu-modal-desc').innerText = data.desc;
+    document.getElementById('menu-modal-ingredient').innerText = data.ingredient;
+    document.getElementById('menu-modal-phrase').innerText = data.phrase;
+
+    modal.classList.add('active');
+
+    // Close on background click
+    modal.onclick = (e) => {
+        if (e.target === modal) {
+            closeMenuModal();
+        }
+    };
+};
+
+window.closeMenuModal = () => {
+    const modal = document.getElementById('menu-modal');
+    if (modal) modal.classList.remove('active');
 };
 
 // Initialization Logic
