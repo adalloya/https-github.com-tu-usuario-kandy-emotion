@@ -287,28 +287,28 @@ const menuData = {
     // Fillings
     'mousse': {
         title: 'Mousse de Cheesecake',
-        img: 'https://placehold.co/400x400/pink/white?text=Mousse',
+        img: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=400&auto=format&fit=crop',
         desc: 'Una nube de sabor. Queso crema de primera calidad batido hasta obtener una textura aireada y ligera.',
         ingredient: 'Queso Crema Philadelphia',
         phrase: '"La cremosidad que tus sueños merecen."'
     },
     'avellana': {
         title: 'Ganache de Avellana',
-        img: 'https://placehold.co/400x400/brown/white?text=Avellana',
+        img: 'https://images.unsplash.com/photo-1615485925694-a035aa0f471e?q=80&w=400&auto=format&fit=crop',
         desc: 'Inspirado en los mejores bombones europeos. Chocolate con leche y pasta de avellanas tostadas.',
         ingredient: 'Avellanas del Piamonte',
         phrase: '"Un abrazo de sabor en cada bocado."'
     },
     'frutos': {
         title: 'Compota de Frutos Rojos',
-        img: 'https://placehold.co/400x400/red/white?text=Frutos',
+        img: 'https://images.unsplash.com/photo-1596367407372-96cb8807410e?q=80&w=400&auto=format&fit=crop',
         desc: 'Cocinada a fuego lento para concentrar el sabor de las fresas, frambuesas y zarzamoras frescas.',
         ingredient: 'Frutos Rojos Frescos',
         phrase: '"La frescura del bosque en tu pastel."'
     },
     'caramelo': {
         title: 'Caramelo Salado',
-        img: 'https://placehold.co/400x400/orange/white?text=Caramelo',
+        img: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=400&auto=format&fit=crop',
         desc: 'El equilibrio perfecto entre dulce y salado. Toffee casero preparado con mantequilla y sal de mar.',
         ingredient: 'Sal de Mar de Colima',
         phrase: '"Atrevido, intenso y adictivo."'
@@ -376,9 +376,30 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Gallery Filters
+    // Load Custom Images from LocalStorage
+    const customGallery = JSON.parse(localStorage.getItem('customGallery')) || [];
+    const galleryGrid = document.querySelector('.gallery-grid');
+
+    if (customGallery.length > 0 && galleryGrid) {
+        customGallery.forEach(item => {
+            const div = document.createElement('div');
+            div.className = `gallery-item ${item.category}`;
+            div.onclick = function () { openLightbox(this); };
+
+            div.innerHTML = `
+                <img src="${item.src}" alt="${item.alt}" loading="lazy">
+                <div class="gallery-overlay"></div>
+            `;
+
+            // Append to grid
+            galleryGrid.appendChild(div);
+        });
+    }
+
+    // Gallery Filters (Re-run to include new items)
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    // Re-select items including new ones
+    const allGalleryItems = document.querySelectorAll('.gallery-item');
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -387,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const filterValue = btn.getAttribute('data-filter');
 
-            galleryItems.forEach(item => {
+            allGalleryItems.forEach(item => {
                 if (filterValue === 'all' || item.classList.contains(filterValue)) {
                     item.style.display = 'block';
                 } else {

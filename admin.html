@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kandy Emotion | Admin Panel</title>
+    <link rel="icon" type="image/png" href="assets/images/logo-icon.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <style>
+        .admin-container {
+            max-width: 600px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            margin-top: 1rem;
+            border-radius: var(--radius-md);
+            display: none;
+        }
+
+        .logout-btn {
+            float: right;
+            color: var(--color-text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="bg-cream">
+
+    <!-- Login Section -->
+    <div id="login-section" class="admin-container">
+        <div class="text-center mb-4">
+            <img src="assets/images/logo-full.png" alt="Kandy Emotion" style="height: 60px; margin-bottom: 1rem;">
+            <h2 class="section-title">Admin Login</h2>
+            <p>Ingresa tus credenciales para gestionar la galería.</p>
+        </div>
+        <form id="login-form">
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Entrar</button>
+        </form>
+    </div>
+
+    <!-- Dashboard Section -->
+    <div id="dashboard-section" class="admin-container hidden">
+        <div class="mb-4">
+            <span class="logout-btn" onclick="logout()">Cerrar Sesión</span>
+            <h2 class="section-title">Subir Imagen</h2>
+        </div>
+
+        <form id="upload-form">
+            <div class="form-group">
+                <label>Seleccionar Imagen</label>
+                <input type="file" id="image-file" accept="image/*" required onchange="previewImage(this)">
+                <img id="preview" class="preview-image">
+            </div>
+
+            <div class="form-group">
+                <label>Categoría</label>
+                <select id="image-category" required>
+                    <option value="wedding">Bodas</option>
+                    <option value="kids">Infantiles</option>
+                    <option value="babyshower">Baby Shower</option>
+                    <option value="xv">XV Años</option>
+                    <option value="graduation">Graduaciones</option>
+                    <option value="birthday">Cumpleaños</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Descripción (Alt Text)</label>
+                <input type="text" id="image-alt" placeholder="Ej: Pastel de boda con flores rosas" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Subir a Galería</button>
+        </form>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
