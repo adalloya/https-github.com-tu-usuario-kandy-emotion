@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kandy Emotion | Pasteles de Diseño y Repostería Gourmet</title>
+    <meta name="description"
+        content="Diseñamos el pastel que imaginaste. Ingredientes premium, diseño exclusivo y sabor artesanal. Kandy Emotion - Digital Atelier.">
+    <meta name="keywords"
+        content="Pasteles personalizados, Repostería gourmet, Pasteles de boda, Kandy Emotion, Villas Cocoyoc">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@500;700;800&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/lightbox.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header id="main-header" class="glass-header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="assets/images/logo.png" alt="Kandy Emotion Logo" class="logo-img">
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#value-prop">Filosofía</a></li>
+                    <li><a href="#gallery">Galería</a></li>
+                    <li><a href="#menu">Menú</a></li>
+                    <li><a href="#configurator" class="btn btn-primary btn-sm">Cotizar Ahora</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu">
+            <nav>
+                <ul>
+                    <li><a href="#hero" onclick="closeMobileMenu()">Inicio</a></li>
+                    <li><a href="#value-prop" onclick="closeMobileMenu()">Filosofía</a></li>
+                    <li><a href="#gallery" onclick="closeMobileMenu()">Galería</a></li>
+                    <li><a href="#menu" onclick="closeMobileMenu()">Menú</a></li>
+                    <li><a href="#configurator" class="btn btn-primary btn-block" onclick="closeMobileMenu()">Cotizar
+                            Ahora</a></li>
+                </ul>
+            </nav>
+        </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section A: Hero -->
+        <section id="hero" class="hero-section">
+            <div class="video-background">
+                <video autoplay muted loop playsinline
+                    poster="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=2589&auto=format&fit=crop">
+                    <source src="assets/videos/cake.mp4" type="video/mp4">
+                    <!-- Fallback image is handled by poster -->
+                </video>
+                <div class="video-overlay"></div>
+            </div>
+            <div class="container hero-content">
+                <h1>Diseñamos el pastel que imaginaste.</h1>
+                <p class="hero-sub">Ingredientes premium, diseño exclusivo y sabor artesanal.</p>
+                <a href="#configurator" class="btn btn-primary btn-lg">Cotizar mi Evento</a>
+            </div>
+            <div class="smile-divider-bottom">
+                <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                    <path d="M0,0 C480,120 960,120 1440,0 L1440,120 L0,120 Z" fill="#FAF9F6"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- Section B: Value Proposition -->
+        <section id="value-prop" class="section-padding">
+            <div class="container">
+                <h2 class="section-title text-center">Nuestra Esencia</h2>
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                fill="none" stroke="#E63E6D" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" />
+                                <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z" />
+                                <path d="M12 2v2" />
+                                <path d="M12 22v-2" />
+                                <path d="M17 12h2" />
+                                <path d="M5 12h2" />
+                            </svg>
+                        </div>
+                        <h3>La Curaduría del Sabor</h3>
+                        <p>No usamos premezclas. Solo mantequilla real, vainilla en vaina y cacaos de origen.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                fill="none" stroke="#E63E6D" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M2 21h20" />
+                                <path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8" />
+                                <path d="M6 21V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3" />
+                                <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" />
+                            </svg>
+                        </div>
+                        <h3>Arquitectura Dulce</h3>
+                        <p>Interpretamos tu visión para crear una pieza central que robará miradas.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                fill="none" stroke="#E63E6D" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
+                        </div>
+                        <h3>Horneado 'Just-in-Time'</h3>
+                        <p>Tu pastel entra al horno exclusivamente para tu fecha.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section C: Shoppable Gallery -->
+        <section id="gallery" class="section-padding bg-cream">
+            <div class="container">
+                <h2 class="section-title text-center">Galería</h2>
+
+                <!-- Filter Buttons -->
+                <div class="gallery-filters text-center">
+                    <button class="filter-btn active" data-filter="all">Todo</button>
+                    <button class="filter-btn" data-filter="wedding">Bodas</button>
+                    <button class="filter-btn" data-filter="kids">Infantiles</button>
+                    <button class="filter-btn" data-filter="babyshower">Baby Showers</button>
+                    <button class="filter-btn" data-filter="xv">XV Años</button>
+                    <button class="filter-btn" data-filter="graduation">Graduaciones</button>
+                    <button class="filter-btn" data-filter="birthday">Cumpleaños</button>
+                </div>
+
+                <!-- Masonry Grid -->
+                <div class="gallery-grid">
+                    <div class="gallery-item wedding">
+                        <img src="assets/images/gallery-wedding.png" alt="Pastel de Boda Elegante" loading="lazy">
+                        <div class="gallery-overlay">
+                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                        </div>
+                    </div>
+                    <div class="gallery-item kids">
+                        <img src="assets/images/gallery-kids.png" alt="Pastel Infantil Divertido" loading="lazy">
+                        <div class="gallery-overlay">
+                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                        </div>
+                    </div>
+                    <div class="gallery-item babyshower">
+                        <img src="assets/images/gallery-babyshower.png" alt="Pastel Baby Shower" loading="lazy">
+                        <div class="gallery-overlay">
+                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                        </div>
+                    </div>
+                    <div class="gallery-item xv">
+                        <img src="assets/images/gallery-quince.png" alt="Pastel XV Años" loading="lazy">
+                        <div class="gallery-overlay">
+                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                        </div>
+                    </div>
+                    <div class="gallery-item graduation">
+                        <img src="assets/images/gallery-graduation.png" alt="Pastel Graduación" loading="lazy">
+                        <div class="gallery-overlay">
+                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                        </div>
+                    </div>
+                    <div class="gallery-item birthday">
+                        <img src="assets/images/gallery-birthday.png" alt="Pastel Cumpleaños" loading="lazy">
+                        <div class="gallery-overlay">
+                            <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                </div>
+            </div>
+            <div class="gallery-item kids">
+                <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?q=80&w=800&auto=format&fit=crop"
+                    alt="Pastel Infantil Colorido" loading="lazy">
+                <div class="gallery-overlay">
+                    <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                </div>
+            </div>
+            <div class="gallery-item editorial">
+                <img src="https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?q=80&w=800&auto=format&fit=crop"
+                    alt="Pastel Minimalista" loading="lazy">
+                <div class="gallery-overlay">
+                    <button class="btn btn-primary btn-sm" onclick="openLightbox(this)">Quiero uno así</button>
+                </div>
+            </div>
+            </div>
+            </div>
+        </section>
+
+        <!-- Section D: Gourmet Menu -->
+        <section id="menu" class="section-padding">
+            <div class="container">
+                <h2 class="section-title text-center">Menú Gourmet</h2>
+                <div class="menu-grid">
+                    <div class="menu-item">
+                        <img src="assets/images/menu-vanilla.png" alt="Vainilla Bourbon" class="menu-img"
+                            loading="lazy">
+                        <div class="menu-content">
+                            <h4>Vainilla Bourbon Imperial</h4>
+                            <p>Bizcocho suave con vainilla de Madagascar y crema de mantequilla sedosa.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="assets/images/menu-cacao.png" alt="Cacao Trufado" class="menu-img" loading="lazy">
+                        <div class="menu-content">
+                            <h4>Cacao Trufado Belga</h4>
+                            <p>Intenso chocolate belga 70% con ganache de trufa oscura.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="assets/images/menu-citrus.png" alt="Citrus Zest" class="menu-img" loading="lazy">
+                        <div class="menu-content">
+                            <h4>Citrus Zest & Butter</h4>
+                            <p>Refrescante limón eureka y naranja confitada con buttercream cítrico.</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="assets/images/menu-pink.png" alt="Pink Velvet" class="menu-img" loading="lazy">
+                        <div class="menu-content">
+                            <h4>Pink Velvet Natural</h4>
+                            <p>Nuestra versión del clásico, teñido con betabel orgánico y cacao.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section E: Social Proof -->
+        <section id="social-proof" class="section-padding bg-cream">
+            <div class="container">
+                <h2 class="section-title text-center">Love Notes</h2>
+                <div class="scroller-container">
+                    <div class="scroller-track">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop"
+                                    alt="Client" class="client-avatar">
+                                <div>
+                                    <h5>Ana Sofía</h5>
+                                    <small>Boda en Hacienda San Gabriel</small>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">"¡El pastel fue la estrella de la noche! No solo se veía
+                                espectacular, el sabor de Vainilla Bourbon dejó a todos encantados. Gracias por hacer mi
+                                visión realidad."</p>
+                            <div class="testimonial-rating">★★★★★</div>
+                        </div>
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop"
+                                    alt="Client" class="client-avatar">
+                                <div>
+                                    <h5>Carlos M.</h5>
+                                    <small>Cumpleaños Sorpresa</small>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">"La atención al detalle es increíble. Pedí un diseño muy
+                                específico de superhéroes pero elegante, y lo lograron a la perfección."</p>
+                            <div class="testimonial-rating">★★★★★</div>
+                        </div>
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop"
+                                    alt="Client" class="client-avatar">
+                                <div>
+                                    <h5>Mariana & Luis</h5>
+                                    <small>Aniversario</small>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">"El sabor Citrus Zest es de otro mundo. Fresco, ligero y
+                                delicioso. Definitivamente volveremos a pedir para nuestros eventos."</p>
+                            <div class="testimonial-rating">★★★★★</div>
+                        </div>
+                        <!-- Testimonial 4 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop"
+                                    alt="Client" class="client-avatar">
+                                <div>
+                                    <h5>Valentina R.</h5>
+                                    <small>Baby Shower</small>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">"Todo el proceso fue súper fácil y profesional. El pastel llegó
+                                perfecto a Villas Cocoyoc y fue el centro de atención."</p>
+                            <div class="testimonial-rating">★★★★★</div>
+                        </div>
+
+                        <!-- Duplicates for Infinite Scroll -->
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop"
+                                    alt="Client" class="client-avatar">
+                                <div>
+                                    <h5>Ana Sofía</h5>
+                                    <small>Boda en Hacienda San Gabriel</small>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">"¡El pastel fue la estrella de la noche! No solo se veía
+                                espectacular, el sabor de Vainilla Bourbon dejó a todos encantados. Gracias por hacer mi
+                                visión realidad."</p>
+                            <div class="testimonial-rating">★★★★★</div>
+                        </div>
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop"
+                                    alt="Client" class="client-avatar">
+                                <div>
+                                    <h5>Carlos M.</h5>
+                                    <small>Cumpleaños Sorpresa</small>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">"La atención al detalle es increíble. Pedí un diseño muy
+                                específico de superhéroes pero elegante, y lo lograron a la perfección."</p>
+                            <div class="testimonial-rating">★★★★★</div>
+                        </div>
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop"
+                                    alt="Client" class="client-avatar">
+                                <div>
+                                    <h5>Mariana & Luis</h5>
+                                    <small>Aniversario</small>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">"El sabor Citrus Zest es de otro mundo. Fresco, ligero y
+                                delicioso. Definitivamente volveremos a pedir para nuestros eventos."</p>
+                            <div class="testimonial-rating">★★★★★</div>
+                        </div>
+                        <!-- Testimonial 4 -->
+                        <div class="testimonial-card">
+                            <div class="testimonial-header">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=150&auto=format&fit=crop"
+                                    alt="Client" class="client-avatar">
+                                <div>
+                                    <h5>Valentina R.</h5>
+                                    <small>Baby Shower</small>
+                                </div>
+                            </div>
+                            <p class="testimonial-text">"Todo el proceso fue súper fácil y profesional. El pastel llegó
+                                perfecto a Villas Cocoyoc y fue el centro de atención."</p>
+                            <div class="testimonial-rating">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section F: Live from Atelier -->
+        <section id="instagram" class="section-padding">
+            <div class="container">
+                <h2 class="section-title text-center">Live from Instagram, Síguenos</h2>
+                <div class="insta-grid">
+                    <a href="https://instagram.com/kandyemotion" target="_blank" class="insta-item">
+                        <img src="assets/images/menu-vanilla.png" alt="Instagram Post" loading="lazy">
+                        <div class="insta-overlay">
+                            <span class="insta-icon">❤️ 1.2k</span>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/kandyemotion" target="_blank" class="insta-item">
+                        <img src="assets/images/menu-pink.png" alt="Instagram Post" loading="lazy">
+                        <div class="insta-overlay">
+                            <span class="insta-icon">❤️ 856</span>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/kandyemotion" target="_blank" class="insta-item">
+                        <img src="assets/images/menu-cacao.png" alt="Instagram Post" loading="lazy">
+                        <div class="insta-overlay">
+                            <span class="insta-icon">❤️ 2.1k</span>
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/kandyemotion" target="_blank" class="insta-item">
+                        <img src="assets/images/menu-citrus.png" alt="Instagram Post" loading="lazy">
+                        <div class="insta-overlay">
+                            <span class="insta-icon">❤️ 1.5k</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="text-center" style="margin-top: var(--spacing-lg);">
+                    <a href="https://instagram.com/kandyemotion" target="_blank" class="btn btn-outline">Follow
+                        @kandyemotion</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section G: Cake Configurator -->
+        <section id="configurator" class="section-padding bg-dark text-light">
+            <div class="container">
+                <h2 class="section-title text-center text-light">Configura tu Pastel</h2>
+                <div id="configurator-wizard" class="wizard-container">
+                    <!-- Progress Bar -->
+                    <div class="wizard-progress">
+                        <div class="progress-bar" id="progress-bar" style="width: 20%;"></div>
+                    </div>
+
+                    <!-- Step 1: Event Date & Guests -->
+                    <div class="wizard-step active" data-step="1">
+                        <h3>1. Detalles del Evento</h3>
+                        <div class="form-group">
+                            <label for="event-date">Fecha del Evento</label>
+                            <input type="date" id="event-date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Invitados</label>
+                            <div class="guests-selector">
+                                <label class="radio-card">
+                                    <input type="radio" name="guests" value="10-20">
+                                    <span>10-20</span>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="guests" value="30-50">
+                                    <span>30-50</span>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="guests" value="50+">
+                                    <span>50+</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="wizard-actions">
+                            <button class="btn btn-primary" onclick="nextStep(2)">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Flavor Base -->
+                    <div class="wizard-step" data-step="2">
+                        <h3>2. Elige tu Base</h3>
+                        <div class="flavor-grid">
+                            <label class="flavor-card">
+                                <input type="radio" name="flavor" value="Vainilla Bourbon">
+                                <div class="flavor-content">
+                                    <h4>Vainilla Bourbon</h4>
+                                    <p>Clásico y elegante</p>
+                                </div>
+                            </label>
+                            <label class="flavor-card">
+                                <input type="radio" name="flavor" value="Cacao Trufado">
+                                <div class="flavor-content">
+                                    <h4>Cacao Trufado</h4>
+                                    <p>Intenso y oscuro</p>
+                                </div>
+                            </label>
+                            <label class="flavor-card">
+                                <input type="radio" name="flavor" value="Citrus Zest">
+                                <div class="flavor-content">
+                                    <h4>Citrus Zest</h4>
+                                    <p>Fresco y vibrante</p>
+                                </div>
+                            </label>
+                            <label class="flavor-card">
+                                <input type="radio" name="flavor" value="Pink Velvet">
+                                <div class="flavor-content">
+                                    <h4>Pink Velvet</h4>
+                                    <p>Suave y natural</p>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="wizard-actions">
+                            <button class="btn btn-outline" onclick="prevStep(1)">Atrás</button>
+                            <button class="btn btn-primary" onclick="nextStep(3)">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Filling -->
+                    <div class="wizard-step" data-step="3">
+                        <h3>3. Relleno Irresistible</h3>
+                        <div class="form-group">
+                            <select id="filling" class="form-control">
+                                <option value="" disabled selected>Selecciona un relleno</option>
+                                <option value="Mousse de Cheesecake">Mousse de Cheesecake</option>
+                                <option value="Ganache de Avellana">Ganache de Avellana</option>
+                                <option value="Compota de Frutos Rojos">Compota de Frutos Rojos</option>
+                                <option value="Caramelo Salado">Caramelo Salado</option>
+                            </select>
+                        </div>
+                        <div class="wizard-actions">
+                            <button class="btn btn-outline" onclick="prevStep(2)">Atrás</button>
+                            <button class="btn btn-primary" onclick="nextStep(4)">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Style & Delivery -->
+                    <div class="wizard-step" data-step="4">
+                        <h3>4. Estilo y Entrega</h3>
+                        <div class="form-group">
+                            <label>Elige el Estilo</label>
+                            <div class="style-grid">
+                                <label class="style-card">
+                                    <input type="radio" name="cake-style" value="Minimalista">
+                                    <span>Minimalista</span>
+                                </label>
+                                <label class="style-card">
+                                    <input type="radio" name="cake-style" value="Floral">
+                                    <span>Floral</span>
+                                </label>
+                                <label class="style-card">
+                                    <input type="radio" name="cake-style" value="Vintage">
+                                    <span>Vintage</span>
+                                </label>
+                                <label class="style-card">
+                                    <input type="radio" name="cake-style" value="Infantil">
+                                    <span>Infantil / Temático</span>
+                                </label>
+                                <label class="style-card">
+                                    <input type="radio" name="cake-style" value="Editorial">
+                                    <span>Editorial / Abstracto</span>
+                                </label>
+                                <label class="style-card">
+                                    <input type="radio" name="cake-style" value="Personalizado">
+                                    <span>100% Personalizado</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Entrega</label>
+                            <div class="delivery-options">
+                                <label class="radio-card">
+                                    <input type="radio" name="delivery" value="Pickup">
+                                    <span>Pickup en Atelier (Gratis)</span>
+                                </label>
+                                <label class="radio-card">
+                                    <input type="radio" name="delivery" value="Delivery">
+                                    <span>Punto Estratégico (Tarifa Dinámica)</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="wizard-actions">
+                            <button class="btn btn-outline" onclick="prevStep(3)">Atrás</button>
+                            <button class="btn btn-primary" onclick="nextStep(5)">Siguiente</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 5: Contact & Submit -->
+                    <div class="wizard-step" data-step="5">
+                        <h3>5. Finalizar Cotización</h3>
+                        <div class="form-group">
+                            <label for="client-name">Nombre Completo</label>
+                            <input type="text" id="client-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="client-contact">WhatsApp / Email</label>
+                            <input type="text" id="client-contact" class="form-control" required>
+                        </div>
+                        <p class="disclaimer"><small>* Para asegurar tu fecha en nuestra agenda de producción,
+                                trabajamos con una reserva del 50%.</small></p>
+                        <div class="wizard-actions">
+                            <button class="btn btn-outline" onclick="prevStep(4)">Atrás</button>
+                            <button class="btn btn-primary" onclick="submitConfigurator()">Enviar Cotización</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Kandy Emotion</h3>
+                <p>Diseñamos el pastel que imaginaste.</p>
+                <div class="social-icons" style="margin-top: 1rem; display: flex; gap: 1rem;">
+                    <a href="https://instagram.com/kandyemotion" target="_blank" aria-label="Instagram"
+                        style="color: #333;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" target="_blank" aria-label="Facebook" style="color: #333;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Atelier</h3>
+                <p>Rincón del Valle 6449-54,<br>Fracc. Villas Cocoyoc,<br>Ciudad Juárez, Chihuahua, México.</p>
+                <p><small>(Recolección con cita)</small></p>
+            </div>
+            <div class="footer-col">
+                <h3>Contacto</h3>
+                <a href="https://wa.me/526562699857" class="btn btn-outline btn-sm"
+                    style="margin-bottom: 1rem;">WhatsApp</a>
+                <p><a href="#" style="color: #888; text-decoration: none; font-size: 0.9rem;">Términos y Condiciones</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Bottom Bar -->
+    <div class="mobile-bottom-bar">
+        <a href="#configurator" class="btn btn-primary btn-block">Cotizar Ahora</a>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
