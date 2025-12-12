@@ -49,30 +49,43 @@
     object-fit: contain;
 }
 
-.lightbox-nav-btn {
+.lightbox-prev,
+.lightbox-next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 1.5rem;
+    background: transparent;
+    /* Transparent background */
+    color: rgba(255, 255, 255, 0.7);
+    /* Semi-transparent white icon */
+    border: none;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    transition: background 0.3s;
-    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
     z-index: 10;
+    transition: all 0.3s ease;
+    font-size: 2rem;
+    /* Larger icon */
 }
 
-.lightbox-nav-btn:hover {
-    background: rgba(255, 255, 255, 0.4);
+.lightbox-prev:hover,
+.lightbox-next:hover {
+    background: rgba(255, 255, 255, 0.1);
+    /* Subtle hover effect */
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+    /* Slight scale on hover */
 }
 
-.lightbox-nav-btn.prev {
+.lightbox-prev {
     left: 1rem;
 }
 
-.lightbox-nav-btn.next {
+.lightbox-next {
     right: 1rem;
 }
 
@@ -88,7 +101,8 @@
     position: absolute;
     top: var(--spacing-sm);
     right: var(--spacing-sm);
-    font-size: 2rem;
+    padding: 8px 20px;
+    font-size: 0.9rem;
     color: var(--color-text-primary);
     background: rgba(255, 255, 255, 0.8);
     width: 40px;

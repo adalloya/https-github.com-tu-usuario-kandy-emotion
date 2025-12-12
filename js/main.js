@@ -4,19 +4,26 @@
 // Global Functions (Accessible by HTML onclick)
 // Global state for lightbox navigation
 let currentLightboxIndex = 0;
-let galleryImages = [];
+let galleryData = []; // Store objects { src, alt, category }
 
 window.openLightbox = (element) => {
     const lightbox = document.getElementById('lightbox');
     if (!lightbox) return;
 
-    // Collect all gallery images
-    const allItems = document.querySelectorAll('.gallery-grid .gallery-item img');
-    galleryImages = Array.from(allItems).map(img => img.src);
+    // Collect all gallery images with metadata
+    const allItems = document.querySelectorAll('.gallery-grid .gallery-item');
+    galleryData = Array.from(allItems).map(item => {
+        const img = item.querySelector('img');
+        return {
+            src: img.src,
+            alt: img.alt || 'Diseño Exclusivo',
+            category: item.dataset.category || 'General' // Assuming parent has data-category or we can infer it
+        };
+    });
 
     // Find index of clicked image
     const clickedImg = element.querySelector('img');
-    currentLightboxIndex = galleryImages.indexOf(clickedImg.src);
+    currentLightboxIndex = galleryData.findIndex(item => item.src === clickedImg.src);
 
     updateLightboxContent();
 
@@ -54,51 +61,46 @@ window.openLightbox = (element) => {
 
 function updateLightboxContent() {
     const lightbox = document.getElementById('lightbox');
-    const imgSrc = galleryImages[currentLightboxIndex];
+    const currentItem = galleryData[currentLightboxIndex];
 
-    // Mock thumbnails (using current image + neighbors or placeholders)
-    // For a real app, you might want specific thumbnails for each gallery item
+    // Mock thumbnails
     const thumbnails = [
-        imgSrc,
-        galleryImages[(currentLightboxIndex + 1) % galleryImages.length],
-        galleryImages[(currentLightboxIndex + 2) % galleryImages.length]
+        currentItem,
+        galleryData[(currentLightboxIndex + 1) % galleryData.length],
+        galleryData[(currentLightboxIndex + 2) % galleryData.length]
     ];
-
-    // Update or Create content
-    // Note: Re-rendering the whole content resets listeners, so we should be careful.
-    // Better to just update the image if the structure exists, but for simplicity/robustness with current structure:
 
     const contentHTML = `
         <div class="lightbox-content">
             <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
             
             <div class="lightbox-main">
-                <img src="${imgSrc}" id="lightbox-main-img" alt="Pastel Detalle">
-                <div class="lightbox-nav-btn prev" onclick="prevLightboxImage()">&#10094;</div>
-                <div class="lightbox-nav-btn next" onclick="nextLightboxImage()">&#10095;</div>
+                <img src="${currentItem.src}" id="lightbox-main-img" alt="${currentItem.alt}">
+                <div class="lightbox-prev" onclick="prevLightboxImage()">&#10094;</div>
+                <div class="lightbox-next" onclick="nextLightboxImage()">&#10095;</div>
             </div>
             
             <div class="lightbox-sidebar">
-                <h3 class="lightbox-title">Diseño Signature</h3>
+                <h3 class="lightbox-title">${currentItem.alt}</h3>
                 
                 <div class="lightbox-thumbnails">
                     ${thumbnails.map((thumb, index) => `
-                        <img src="${thumb}" class="lightbox-thumb ${index === 0 ? 'active' : ''}" 
-                             onclick="changeLightboxImage(this, '${thumb}')">
+                        <img src="${thumb.src}" class="lightbox-thumb ${index === 0 ? 'active' : ''}" 
+                             onclick="changeLightboxImage(this, '${thumb.src}')">
                     `).join('')}
                 </div>
                 
                 <p class="lightbox-desc">
-                    Cada detalle de este pastel ha sido cuidado artesanalmente. 
+                    Cada detalle de este diseño ha sido cuidado artesanalmente. 
                     Perfecto para celebraciones que buscan elegancia y sabor inolvidable.
                     <br><br>
-                    <strong>Estilo:</strong> Moderno / Romántico<br>
-                    <strong>Cobertura:</strong> Buttercream Suizo
+                    <strong>Estilo:</strong> Personalizado<br>
+                    <strong>Cobertura:</strong> Buttercream Suizo / Fondant
                 </p>
                 
                 <div class="lightbox-cta">
                     <a href="#configurator" class="btn btn-primary btn-block" onclick="closeLightbox()">
-                        Quiero uno así
+                        Cotizar este Diseño
                     </a>
                 </div>
             </div>
@@ -122,13 +124,14 @@ function updateLightboxContent() {
     }, { passive: true });
 }
 
+
 window.nextLightboxImage = () => {
-    currentLightboxIndex = (currentLightboxIndex + 1) % galleryImages.length;
+    currentLightboxIndex = (currentLightboxIndex + 1) % galleryData.length;
     updateLightboxContent();
 };
 
 window.prevLightboxImage = () => {
-    currentLightboxIndex = (currentLightboxIndex - 1 + galleryImages.length) % galleryImages.length;
+    currentLightboxIndex = (currentLightboxIndex - 1 + galleryData.length) % galleryData.length;
     updateLightboxContent();
 };
 
@@ -180,7 +183,7 @@ window.nextStep = (step) => {
     // Progress Bar
     const progress = (step / 5) * 100;
     const progressBar = document.getElementById('progress-bar');
-    if (progressBar) progressBar.style.width = `${progress}%`;
+    if (progressBar) progressBar.style.width = `${progress}% `;
 };
 
 window.prevStep = (step) => {
@@ -190,14 +193,13 @@ window.prevStep = (step) => {
 
     const progress = (step / 5) * 100;
     const progressBar = document.getElementById('progress-bar');
-    if (progressBar) progressBar.style.width = `${progress}%`;
+    if (progressBar) progressBar.style.width = `${progress}% `;
 };
 
 window.submitConfigurator = () => {
     const nameInput = document.getElementById('client-name');
     const contactInput = document.getElementById('client-contact');
     const dateInput = document.getElementById('event-date');
-    const fillingInput = document.getElementById('filling');
 
     const name = nameInput ? nameInput.value : '';
     const contact = contactInput ? contactInput.value : '';
@@ -211,7 +213,7 @@ window.submitConfigurator = () => {
 
     const guests = getRadioValue('guests');
     const flavor = getRadioValue('flavor');
-    const filling = fillingInput ? fillingInput.value : 'No seleccionado';
+    const filling = getRadioValue('filling');
     const style = getRadioValue('cake-style');
     const delivery = getRadioValue('delivery');
 
@@ -223,25 +225,25 @@ window.submitConfigurator = () => {
     // WhatsApp Message
     const phoneNumber = '526562699857';
     const message = `
-*SOLICITUD DE COTIZACIÓN - KANDY EMOTION*
-------------------------------------------------
-*CLIENTE*
+    * SOLICITUD DE COTIZACIÓN - KANDY EMOTION *
+        ------------------------------------------------
+* CLIENTE *
 👤 Nombre: ${name}
 📱 Contacto: ${contact}
 📅 Fecha del Evento: ${date}
 ------------------------------------------------
-*DETALLES DEL DISEÑO*
-------------------------------------------------
+* DETALLES DEL DISEÑO *
+    ------------------------------------------------
 🎂 Invitados: ${guests} personas
 🍰 Sabor Base: ${flavor}
 🍫 Relleno: ${filling}
 🎨 Estilo Visual: ${style}
 🚚 Método de Entrega: ${delivery}
 ------------------------------------------------
-*NOTAS ADICIONALES*
-(El cliente puede agregar notas aquí...)
+* NOTAS ADICIONALES *
+    (El cliente puede agregar notas aquí...)
 ------------------------------------------------
-Enviado desde el Configurador Web
+    Enviado desde el Configurador Web
     `.trim();
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
@@ -280,38 +282,53 @@ const menuData = {
     'pink': {
         title: 'Pink Velvet Natural',
         img: 'assets/images/menu-pink.png',
-        desc: 'Suavidad aterciopelada con un toque de cacao y el color vibrante del betabel fresco.',
+        desc: 'Una reinvención sofisticada. Húmedo bizcocho teñido naturalmente con reducción de betabel orgánico y un toque de cacao. Relleno de una mousse ligera de queso mascarpone.',
         ingredient: 'Betabel Orgánico & Cacao',
-        phrase: '"Romántico, suave y absolutamente irresistible."'
+        phrase: '"La elegancia de lo natural."'
     },
+    'almendra': {
+        title: 'Almendra Marcona Real',
+        img: 'assets/images/menu-almendra.jpg',
+        desc: 'Bizcocho húmedo de almendra Marcona tostada, con notas sutiles de amaretto y una crema ligera de turrón.',
+        ingredient: 'Almendra Marcona & Amaretto',
+        phrase: '"Un lujo mediterráneo en tu paladar."'
+    },
+
     // Fillings
     'mousse': {
         title: 'Mousse de Cheesecake',
-        img: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=400&auto=format&fit=crop',
+        img: 'assets/images/menu-mousse.jpg',
         desc: 'Una nube de sabor. Queso crema de primera calidad batido hasta obtener una textura aireada y ligera.',
         ingredient: 'Queso Crema Philadelphia',
         phrase: '"La cremosidad que tus sueños merecen."'
     },
     'avellana': {
         title: 'Ganache de Avellana',
-        img: 'https://images.unsplash.com/photo-1615485925694-a035aa0f471e?q=80&w=400&auto=format&fit=crop',
+        img: 'assets/images/menu-ganache.jpg',
         desc: 'Inspirado en los mejores bombones europeos. Chocolate con leche y pasta de avellanas tostadas.',
         ingredient: 'Avellanas del Piamonte',
         phrase: '"Un abrazo de sabor en cada bocado."'
     },
     'frutos': {
         title: 'Compota de Frutos Rojos',
-        img: 'https://images.unsplash.com/photo-1596367407372-96cb8807410e?q=80&w=400&auto=format&fit=crop',
+        img: 'assets/images/menu-frutos.png',
         desc: 'Cocinada a fuego lento para concentrar el sabor de las fresas, frambuesas y zarzamoras frescas.',
         ingredient: 'Frutos Rojos Frescos',
         phrase: '"La frescura del bosque en tu pastel."'
     },
     'caramelo': {
         title: 'Caramelo Salado',
-        img: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=400&auto=format&fit=crop',
+        img: 'assets/images/menu-caramelo.jpg',
         desc: 'El equilibrio perfecto entre dulce y salado. Toffee casero preparado con mantequilla y sal de mar.',
         ingredient: 'Sal de Mar de Colima',
         phrase: '"Atrevido, intenso y adictivo."'
+    },
+    'queso': {
+        title: 'Queso Crema Artesanal',
+        img: 'assets/images/menu-queso.jpg',
+        desc: 'Un clásico perfeccionado. Batido lentamente con mantequilla de alta calidad y vainilla en vaina para lograr una textura densa pero sedosa.',
+        ingredient: 'Mantequilla & Vaina de Vainilla',
+        phrase: '"La definición de indulgencia."'
     }
 };
 
